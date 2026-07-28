@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- এই মেটা ট্যাগটি মোবাইল ভিউয়ের জন্য দেওয়া হয়েছে -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <title>Student's Zone - Dhainagar High School</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -75,21 +73,21 @@
             border: 3px solid var(--neon-blue);
             box-shadow: 0 0 15px var(--neon-blue);
             margin-bottom: 15px;
-            background-color: #fff; /* লোগোর ব্যাকগ্রাউন্ড সাদা করা হয়েছে যাতে লোগো পরিষ্কার দেখা যায় */
+            background-color: #fff; 
         }
 
         h1 {
             font-size: 28px;
             font-weight: 800;
             color: #fff;
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            /* স্কুলের নামে নিয়ন এফেক্ট বাদ দেওয়া হয়েছে */
             margin-bottom: 5px;
         }
 
         .details {
             font-size: 14px;
             color: #ccc;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
             letter-spacing: 1px;
         }
 
@@ -97,6 +95,7 @@
             font-size: 13px;
             color: #aaa;
             margin-bottom: 15px;
+            margin-top: 5px;
         }
 
         .sub-title {
@@ -268,12 +267,13 @@
 
     <div class="container">
         <header>
-            <!-- নতুন গুগল ড্রাইভ লোগো লিংক -->
-            <img src="https://drive.google.com/uc?export=view&id=1kL6r0VnNS1owRNkBsXabtXJ8JbgH4Bpx" alt="Dhainagar High School Logo" class="logo" onerror="this.src='https://via.placeholder.com/100/000000/00f3ff?text=DHS'">
+            <!-- গিটহাব রিপোজিটরির ছবি সরাসরি ব্যবহার করা হলো -->
+            <img src="school_logo_preview.png" alt="Dhainagar High School Logo" class="logo" onerror="this.src='https://via.placeholder.com/100/000000/00f3ff?text=DHS'">
             
             <h1>Dhainagar High School (H.S.)</h1>
-            <p class="details">Estd.: 1973 &nbsp;|&nbsp; Type: Co. Ed. & Govt. Spon.</p>
-            <p class="address">Address: Telighata, Tapan, DD, 733127</p>
+            <p class="details">Co. Ed. & Govt. Sponsored</p>
+            <p class="details">Estd.: 1973</p>
+            <p class="address">Telighata, Tapan, Dakshin Dinajpur, 733127</p>
             <h2 class="sub-title">Student's Zone</h2>
         </header>
 
@@ -354,7 +354,6 @@
             }
         }
 
-        // Close modal on clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('resultsModal')) {
                 closeModal('resultsModal');
