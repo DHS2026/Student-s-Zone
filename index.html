@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student's Zone - Dhainagar High School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-pink: #ff00ff;
+            --neon-green: #39ff14;
+            --bg-dark: #070913;
+            --container-bg: rgba(16, 21, 48, 0.85);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.1), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 0, 255, 0.1), transparent 25%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--container-bg);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), 
+                        inset 0 0 20px rgba(255, 0, 255, 0.1);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Decorative glowing orbs */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50px; left: -50px;
+            width: 100px; height: 100px;
+            background: var(--neon-pink);
+            filter: blur(80px);
+            z-index: 0;
+        }
+
+        header {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+            margin-bottom: 5px;
+        }
+
+        .details {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .address {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .sub-title {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--neon-pink);
+            padding-bottom: 5px;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .neon-btn {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--neon-blue);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            outline: none;
+        }
+
+        .neon-btn:nth-child(even) {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.2);
+        }
+
+        .neon-btn:hover {
+            background: var(--neon-blue);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+            transform: translateY(-3px);
+        }
+
+        .neon-btn:nth-child(even):hover {
+            background: var(--neon-pink);
+            color: #fff;
+            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
+        }
+
+        /* Modal Styles (For Dropdown & Popups) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #11152a;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--neon-pink);
+        }
+
+        .modal h3 {
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .select-box {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            border: 1px solid var(--neon-pink);
+            border-radius: 8px;
+            outline: none;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .select-box option {
+            background: #11152a;
+            color: #fff;
+        }
+
+        .submit-btn {
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            color: #fff;
+            padding: 10px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-green);
+        }
+
+        /* Error Message Modal */
+        #msgModal .modal-content {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
+        }
+        
+        #msgModal p {
+            font-size: 18px;
+            color: #fff;
+            line-height: 1.5;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 22px; }
+            .sub-title { font-size: 18px; }
+            .neon-btn { font-size: 14px; padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <img src="https://drive.google.com/uc?export=view&id=1bmXC-UvJw-ELjJLDGl9oc78cKmXM-wWh" alt="Dhainagar High School Logo" class="logo" onerror="this.src='https://via.placeholder.com/100/000000/00f3ff?text=DHS'">
+            
+            <h1>Dhainagar High School (H.S.)</h1>
+            <p class="details">Estd.: 1973 &nbsp;|&nbsp; Type: Co. Ed. & Govt. Spon.</p>
+            <p class="address">Address: Telighata, Tapan, DD, 733127</p>
+            <h2 class="sub-title">Student's Zone</h2>
+        </header>
+
+        <div class="button-grid">
+            <a href="https://script.google.com/macros/s/AKfycbwVBylXhZVEBRAbjvvht7gDDaWRi8fFYDBe8_XXfj_gpkygZk9xLWLh7ZnZCqRSXDsn/exec" target="_blank" class="neon-btn">Attendance Status</a>
+            
+            <a href="https://script.google.com/macros/s/AKfycbxb53nZIJnUcADd6FlEPCRQXx5J3cWUOdmPq6FDadf6-Jvc56BqkKs3xgagWgRlpAQ/exec" target="_blank" class="neon-btn">BS ID Search</a>
+            
+            <a href="https://script.google.com/macros/s/AKfycbxXZha-Wg5RmHXgX03JIM_exIlTVqCKrlBjZf82ZMAZ7Oi-tR2s70KZvqaTDWn67Rs/exec" target="_blank" class="neon-btn">Kanyashree ID Search</a>
+            
+            <a href="https://dhs2026.github.io/Students_Helpline_nos/" target="_blank" class="neon-btn">Help Line Nos</a>
+            
+            <!-- Result Button that triggers Custom Option Box -->
+            <button class="neon-btn" onclick="openResultsModal()">Results</button>
+            
+            <a href="https://script.google.com/macros/s/AKfycbw5a3HmxagX6rLf8I0RB2sAQsPYu5vatNkC70arWPJ6sL3A3aB-bHH7A3kTNAZ3LT1b/exec" target="_blank" class="neon-btn">Age Calculator</a>
+            
+            <a href="https://script.google.com/macros/s/AKfycbwypq5b6aAYjN01WnkLqa3mb_4LzD6NS9W67wE2_QHdnmMJiyKx-xEJkmhwI2Vzz6GN/exec" target="_blank" class="neon-btn" style="grid-column: 1 / -1; max-width: 300px; justify-self: center;">Simple Calculator</a>
+        </div>
+    </div>
+
+    <!-- Results Selection Option Box (Modal) -->
+    <div id="resultsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('resultsModal')">&times;</span>
+            <h3>Choose Your Class</h3>
+            <select id="classSelection" class="select-box">
+                <option value="" disabled selected>-- Select Class --</option>
+                <option value="5_8">Class V</option>
+                <option value="5_8">Class VI</option>
+                <option value="5_8">Class VII</option>
+                <option value="5_8">Class VIII</option>
+                <option value="9_10">Class IX</option>
+                <option value="9_10">Class X</option>
+                <option value="pending">Class XI</option>
+                <option value="pending">Class XII</option>
+                <option value="pending">মাধ্যমিক</option>
+                <option value="pending">উচ্চ মাধ্যমিক</option>
+            </select>
+            <button class="submit-btn" onclick="checkResult()">Submit</button>
+        </div>
+    </div>
+
+    <!-- Construction Alert Modal -->
+    <div id="msgModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('msgModal')">&times;</span>
+            <p>⚙️ আমাদের ওয়েবসাইটের কাজ চলছে। সাময়িক অসুবিধার জন্য আমরা দুঃখিত।</p>
+        </div>
+    </div>
+
+    <script>
+        // Modal Open Logic
+        function openResultsModal() {
+            document.getElementById('resultsModal').style.display = 'flex';
+        }
+
+        // Modal Close Logic
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Results Checking Logic
+        function checkResult() {
+            const val = document.getElementById('classSelection').value;
+            
+            if (!val) {
+                alert("Please select a class first.");
+                return;
+            }
+
+            closeModal('resultsModal');
+
+            if (val === '5_8') {
+                window.open('https://script.google.com/macros/s/AKfycbwBTcWfFzyBuOPn8-xhFbtjH-PVyeE387k2ZYHY8Gw_Xrc7hewPp-Eb4woKdfqbx7Jp/exec?page=5to8', '_blank');
+            } 
+            else if (val === '9_10') {
+                window.open('https://script.google.com/macros/s/AKfycbwBTcWfFzyBuOPn8-xhFbtjH-PVyeE387k2ZYHY8Gw_Xrc7hewPp-Eb4woKdfqbx7Jp/exec', '_blank');
+            } 
+            else if (val === 'pending') {
+                document.getElementById('msgModal').style.display = 'flex';
+            }
+        }
+
+        // Close modal when clicked outside the box
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('resultsModal')) {
+                closeModal('resultsModal');
+            }
+            if (event.target == document.getElementById('msgModal')) {
+                closeModal('msgModal');
+            }
+        }
+    </script>
+</body>
+</html>
