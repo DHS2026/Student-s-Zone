@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- এই মেটা ট্যাগটি মোবাইল ভিউয়ের জন্য দেওয়া হয়েছে -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Student's Zone - Dhainagar High School</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -49,7 +51,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Decorative glowing orbs */
         .container::before {
             content: '';
             position: absolute;
@@ -74,6 +75,7 @@
             border: 3px solid var(--neon-blue);
             box-shadow: 0 0 15px var(--neon-blue);
             margin-bottom: 15px;
+            background-color: #fff; /* লোগোর ব্যাকগ্রাউন্ড সাদা করা হয়েছে যাতে লোগো পরিষ্কার দেখা যায় */
         }
 
         h1 {
@@ -158,7 +160,7 @@
             box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
         }
 
-        /* Modal Styles (For Dropdown & Popups) */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -242,7 +244,6 @@
             box-shadow: 0 0 15px var(--neon-green);
         }
 
-        /* Error Message Modal */
         #msgModal .modal-content {
             border-color: var(--neon-pink);
             box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
@@ -255,6 +256,7 @@
             margin-top: 15px;
         }
 
+        /* Mobile View Media Queries */
         @media (max-width: 600px) {
             h1 { font-size: 22px; }
             .sub-title { font-size: 18px; }
@@ -266,7 +268,8 @@
 
     <div class="container">
         <header>
-            <img src="https://drive.google.com/uc?export=view&id=1bmXC-UvJw-ELjJLDGl9oc78cKmXM-wWh" alt="Dhainagar High School Logo" class="logo" onerror="this.src='https://via.placeholder.com/100/000000/00f3ff?text=DHS'">
+            <!-- নতুন গুগল ড্রাইভ লোগো লিংক -->
+            <img src="https://drive.google.com/uc?export=view&id=1kL6r0VnNS1owRNkBsXabtXJ8JbgH4Bpx" alt="Dhainagar High School Logo" class="logo" onerror="this.src='https://via.placeholder.com/100/000000/00f3ff?text=DHS'">
             
             <h1>Dhainagar High School (H.S.)</h1>
             <p class="details">Estd.: 1973 &nbsp;|&nbsp; Type: Co. Ed. & Govt. Spon.</p>
@@ -283,7 +286,6 @@
             
             <a href="https://dhs2026.github.io/Students_Helpline_nos/" target="_blank" class="neon-btn">Help Line Nos</a>
             
-            <!-- Result Button that triggers Custom Option Box -->
             <button class="neon-btn" onclick="openResultsModal()">Results</button>
             
             <a href="https://script.google.com/macros/s/AKfycbw5a3HmxagX6rLf8I0RB2sAQsPYu5vatNkC70arWPJ6sL3A3aB-bHH7A3kTNAZ3LT1b/exec" target="_blank" class="neon-btn">Age Calculator</a>
@@ -292,7 +294,7 @@
         </div>
     </div>
 
-    <!-- Results Selection Option Box (Modal) -->
+    <!-- Results Selection Modal -->
     <div id="resultsModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('resultsModal')">&times;</span>
@@ -307,14 +309,14 @@
                 <option value="9_10">Class X</option>
                 <option value="pending">Class XI</option>
                 <option value="pending">Class XII</option>
-                <option value="pending">মাধ্যমিক</option>
-                <option value="pending">উচ্চ মাধ্যমিক</option>
+                <option value="pending">মাধ্যমিক (Madhyamik)</option>
+                <option value="pending">উচ্চ মাধ্যমিক (H.S.)</option>
             </select>
             <button class="submit-btn" onclick="checkResult()">Submit</button>
         </div>
     </div>
 
-    <!-- Construction Alert Modal -->
+    <!-- Alert Message Modal -->
     <div id="msgModal" class="modal">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal('msgModal')">&times;</span>
@@ -323,17 +325,14 @@
     </div>
 
     <script>
-        // Modal Open Logic
         function openResultsModal() {
             document.getElementById('resultsModal').style.display = 'flex';
         }
 
-        // Modal Close Logic
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
         }
 
-        // Results Checking Logic
         function checkResult() {
             const val = document.getElementById('classSelection').value;
             
@@ -355,7 +354,7 @@
             }
         }
 
-        // Close modal when clicked outside the box
+        // Close modal on clicking outside
         window.onclick = function(event) {
             if (event.target == document.getElementById('resultsModal')) {
                 closeModal('resultsModal');
